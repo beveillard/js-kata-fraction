@@ -1,27 +1,9 @@
-export function sum(fraction1, fraction2) {
-  let n1 = numerator(fraction1);
-  let n2 = numerator(fraction2);
-  let d1 = denominator(fraction1);
-  let d2 = denominator(fraction2);
-
-  let sumNumerator = n1 * d2 + n2 * d1;
-  let sumDenominator = d1 * d2;
-
+export function sum(f1, f2) {
+  let sumNumerator = f1[0] * f2[1] + f2[0] * f1[1];
+  let sumDenominator = f1[1] * f2[1];
   let sumGcd = gcd(sumNumerator, sumDenominator);
 
-  return String(sumNumerator / sumGcd) + "/" + String(sumDenominator / sumGcd);
-}
-
-export function numerator(fraction) {
-  let separator = fraction.indexOf('/');
-
-  return Number(fraction.slice(0, separator));
-}
-
-export function denominator(fraction) {
-  let separator = fraction.indexOf('/');
-
-  return Number(fraction.slice(separator + 1));
+  return [sumNumerator / sumGcd, sumDenominator / sumGcd];
 }
 
 function gcd(a, b) {
