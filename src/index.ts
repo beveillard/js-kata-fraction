@@ -1,11 +1,19 @@
-export function sum(f1, f2) {
-  let sumNumerator = f1[0] * f2[1] + f2[0] * f1[1];
-  let sumDenominator = f1[1] * f2[1];
-  let sumGcd = gcd(sumNumerator, sumDenominator);
-
-  return [sumNumerator / sumGcd, sumDenominator / sumGcd];
+export class fraction {
+  numerator: number;
+  denominator: number;
 }
 
-function gcd(a, b) {
+export function sum(f1: fraction, f2: fraction): fraction {
+  const sumNumerator = f1.numerator * f2.denominator + f2.numerator * f1.denominator;
+  const sumDenominator = f1.denominator * f2.denominator;
+  const sumGcd = gcd(sumNumerator, sumDenominator);
+
+  return {
+    numerator: sumNumerator / sumGcd,
+    denominator: sumDenominator / sumGcd,
+  };
+}
+
+function gcd(a: number, b: number): number {
   return b === 0 ? a : gcd(b, a % b);
 }
